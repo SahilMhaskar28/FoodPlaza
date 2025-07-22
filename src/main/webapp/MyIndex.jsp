@@ -8,22 +8,8 @@
 <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<!--  Free CSS Template by TemplateMo.com  --> 
-<div id="templatemo_container">
-	<div id="templatemo_header">
-    	<div id="site_title"></div>
-    </div> <!-- end of header -->
-    
-    <div id="templatemo_menu">
-        <ul>
-        	<li class="current"><a href="#"><b>Home</b></a></li>
-            <li><a href="#"><b>Tea</b></a></li>
-            <li><a href="#"><b>Top Dishes</b></a></li>
-            <li><a href="#"><b>Food Menus</b></a></li>
-            <li><a href="#"><b>Company</b></a></li>
-            <li ><a href="#"><b>Contact</b></a></li>
-        </ul>
-    </div> <!-- end of menu -->
+<jsp:include page="Header.jsp"></jsp:include>
+<jsp:include page="Message.jsp"></jsp:include>
     
     <div id="templatemo_top_dishes">
 
@@ -89,17 +75,6 @@
     </div>
 
 
-<div id="templatemo_footer">
-    
-    	<a href="#">Home</a> | <a href="#">Tea</a> | <a href="#">Top Dishes</a> | <a href="#">Company</a> | <a href="#">FAQs</a> | <a href="#">Contact Us</a><br />
-        Copyright © 2024 <a href="#"><strong>Your Company Name</strong></a> 
-        <!-- Credit: www.templatemo.com --></div> <!-- end of footer -->
-<!--  Free CSS Templates by TemplateMo.com  --> 
-</div><!-- end of container -->
-<!-- templatemo 082 tea and meal -->
-<!-- 
-Tea And Meal Template 
-http://www.templatemo.com/preview/templatemo_082_tea_and_meal 
--->
+<jsp:include page="Footer.jsp"></jsp:include>
 </body>
 </html>

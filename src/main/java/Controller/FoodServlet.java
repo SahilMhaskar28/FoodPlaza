@@ -1,45 +1,81 @@
 package Controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class FoodServlet
- */
+import Impl.FoodDaoImpl;
+import POJO.Food;
+
+
 @WebServlet("/FoodServlet")
 public class FoodServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	FoodDaoImpl fdimpl = new FoodDaoImpl();
+	List flist;
+	boolean flag;
+	String msg,errmsg;
+	HttpSession session;
+    
     public FoodServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String process=request.getParameter("process");
+		session=request.getSession();
+		if(process!=null && process.equals("allFood")) {
+			flist=fdimpl.getAllFood();
+			session.setAttribute("flistObj", flist);
+			response.sendRedirect("FoodList.jsp");
+		}
+		else {
+			
+		}
+		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		doGet(request, response);
-		
+//		PrintWriter out=response.getWriter(); 
 		String Process=request.getParameter("process");
+		HttpSession session = request.getSession();
 		
 		if(Process!=null && Process.equals("addFood")) {
+			String foodName = request.getParameter("foodName");
+			String foodType = request.getParameter("foodType");
+			String foodCategory = request.getParameter("foodCategory");
+			String foodDescription = request.getParameter("foodDescription");
+			double foodPrice =Double.parseDouble(request.getParameter("foodPrice"));
+			String foodImage = request.getParameter("foodImage");
+			
+			Food f= new Food(foodName,foodType,foodCategory,foodDescription,foodPrice,foodImage);
+			flag=fdimpl.addFood(f);
+			
+			if(flag) {
+				
+				msg="Successfully inserted";
+				RequestDispatcher rd = request.getRequestDispatcher("MyIndex.jsp");
+				rd.forward(request, response);
+				
+			}
+			else {
+				errmsg="Not inserted";
+				RequestDispatcher rd = request.getRequestDispatcher("AddFood.jsp");
+				rd.forward(request, response);
+			}
 			
 		}
 	}

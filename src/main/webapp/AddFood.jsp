@@ -17,27 +17,27 @@
                 <td><input type="text" name="foodName" class="form-control"></td>
             </tr>
 
-               <tr>
+            <tr>
                 <th>FoodType:</th>
                 <td><input type="text" name="foodType" class="form-control"></td>
             </tr>
 
             <tr>
                 <th>FoodCategory:</th>
-                <td><input type="text" name="foodName" class="form-control"></td>
+                <td><input type="text" name="foodCategory" class="form-control"></td>
             </tr>
 
-               <tr>
+            <tr>
                 <th>FoodDescription:</th>
                 <td><input type="text" name="foodDescription" class="form-control"></td>
             </tr>
 
-               <tr>
+            <tr>
                 <th>FoodPrice:</th>
                 <td><input type="text" name="foodPrice" class="form-control"></td>
             </tr>
 
-               <tr>
+            <tr>
                 <th>FoodImage:</th>
                 <td><input type="text" name="foodImage" class="form-control"></td>
             </tr>
