@@ -9,6 +9,7 @@
 </head>
 <body>
 <jsp:include page="Header.jsp"></jsp:include>
+<jsp:include page="Message.jsp"></jsp:include>
 <form action="FoodServlet" method="post">
 <input type="hidden" name="process" value="addFood">
  <table class="table table-success">

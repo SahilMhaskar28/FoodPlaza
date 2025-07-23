@@ -20,6 +20,7 @@
 		<th>FoodDescription</th>
 		<th>FoodPrice</th>
 		<th>Image</th>
+		<th colspan="3">Action</th>
 	</tr>
 	
 	<c:forEach var="f" items="${flistObj}">
@@ -32,6 +33,8 @@
 	<td>${f.foodDesc}</td>
 	<td>${f.foodPrice}</td>
 	<td><img src="images/${f.image}" height="100px" width="100px"></td>
+	<td><a href="FoodServlet?process=updateFood" class="btn btn-success">Update</a></td>
+	<td><a href="FoodServlet?process=deleteFood" class="btn btn-danger">Delete</a></td>
 	</tr>
 			
 	</c:forEach>
