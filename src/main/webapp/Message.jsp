@@ -24,10 +24,5 @@ if(msg!= null){ %>
 <%}
 %>
 
-
-
-
-
-
 </body>
 </html>

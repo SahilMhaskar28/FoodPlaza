@@ -10,6 +10,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </head>
 <body>
+<%
+String login=(String) session.getAttribute("login");
+%>
 <jsp:include page="Header.jsp"></jsp:include>
 <table class="table table-success">
 	<tr>
@@ -20,7 +23,9 @@
 		<th>FoodDescription</th>
 		<th>FoodPrice</th>
 		<th>Image</th>
+		<%if (login!=null){ %>
 		<th colspan="3">Action</th>
+		<%} %>
 	</tr>
 	
 	<c:forEach var="f" items="${flistObj}">
@@ -33,8 +38,15 @@
 	<td>${f.foodDesc}</td>
 	<td>${f.foodPrice}</td>
 	<td><img src="images/${f.image}" height="100px" width="100px"></td>
+	
+	<% if(login!=null && login.equals("admin")){%>
 	<td><a href="FoodServlet?process=updateFood" class="btn btn-success">Update</a></td>
 	<td><a href="FoodServlet?process=deleteFood" class="btn btn-danger">Delete</a></td>
+	<%} %>
+	
+	<% if(login!=null && login.equals("customer")){%>
+	<td><a class="btn btn-warning" href="">AddToCart</a> </td>
+	<%} %>
 	</tr>
 			
 	</c:forEach>

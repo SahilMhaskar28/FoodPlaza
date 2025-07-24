@@ -8,7 +8,7 @@
 <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
 </head>
 
-<% String login = (String) session.getAttribute("Login"); %>
+<% String login = (String) session.getAttribute("login"); %>
 
 <body>
 <!--  Free CSS Template by TemplateMo.com  --> 

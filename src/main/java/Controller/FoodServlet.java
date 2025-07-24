@@ -66,13 +66,15 @@ public class FoodServlet extends HttpServlet {
 			
 			if(flag) {
 				
-				msg="Successfully inserted";
-				RequestDispatcher rd = request.getRequestDispatcher("MyIndex.jsp");
+				msg="Successfully Inserted";
+				request.setAttribute("msg",msg);
+				RequestDispatcher rd = request.getRequestDispatcher("AddFood.jsp");
 				rd.forward(request, response);
 				
 			}
 			else {
 				errmsg="Not inserted";
+				request.setAttribute("errmsg",errmsg);
 				RequestDispatcher rd = request.getRequestDispatcher("AddFood.jsp");
 				rd.forward(request, response);
 			}
