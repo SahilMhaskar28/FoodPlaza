@@ -22,7 +22,7 @@ public class CartDaoImpl implements CartDao
 	public boolean addToCart(Cart cart) 
 	{
 		con=DButility.getConnect();
-		sql="insert into cart(foodId, foodPrice, foodQuantity, totalPrice, emailId, foodName)values(?, ?, ?, ?, ?, ?)";
+		sql="insert into cart(foodid, fprice, fquantity, totalPrice, cEmail, fname)values(?, ?, ?, ?, ?, ?)";
 		
 		try
 		{
@@ -69,12 +69,12 @@ public class CartDaoImpl implements CartDao
 			while(rs.next())
 			{
 				Cart ca=new Cart();
-				ca.setCartid(rs.getInt("cartId"));
-				ca.setcEmail(rs.getString("emailId"));
-				ca.setFname(rs.getString("foodName"));
-				ca.setFoodid(rs.getInt("foodId"));
-				ca.setFprice(rs.getDouble("foodPrice"));
-				ca.setFquantity(rs.getInt("foodQuantity"));
+				ca.setCartid(rs.getInt("cartid"));
+				ca.setcEmail(rs.getString("cEmail"));
+				ca.setFname(rs.getString("fname"));
+				ca.setFoodid(rs.getInt("foodid"));
+				ca.setFprice(rs.getDouble("fprice"));
+				ca.setFquantity(rs.getInt("fquantity"));
 				ca.setTotalPrice(rs.getDouble("totalPrice"));
 				
 				clist.add(ca);
@@ -93,7 +93,7 @@ public class CartDaoImpl implements CartDao
 	public List<Cart> searchCartByEmailId(String cEmail) 
 	{
 		con=DButility.getConnect();
-		sql="select * from cart where emailId=?";
+		sql="select * from cart where cEmail=?";
 		
 		try
 		{
@@ -107,12 +107,12 @@ public class CartDaoImpl implements CartDao
 			while(rs.next())
 			{
 				Cart ca=new Cart();
-				ca.setCartid(rs.getInt("cartId"));
-				ca.setcEmail(rs.getString("emailId"));
-				ca.setFname(rs.getString("foodName"));
-				ca.setFoodid(rs.getInt("foodId"));
-				ca.setFprice(rs.getDouble("foodPrice"));
-				ca.setFquantity(rs.getInt("foodQuantity"));
+				ca.setCartid(rs.getInt("cartid"));
+				ca.setcEmail(rs.getString("cEmail"));
+				ca.setFname(rs.getString("fname"));
+				ca.setFoodid(rs.getInt("foodid"));
+				ca.setFprice(rs.getDouble("fprice"));
+				ca.setFquantity(rs.getInt("fquantity"));
 				ca.setTotalPrice(rs.getDouble("totalPrice"));
 				
 				clist.add(ca);
@@ -132,7 +132,7 @@ public class CartDaoImpl implements CartDao
 	{
 		con=DButility.getConnect();
 		
-		sql="select * from cart where cartId=?";
+		sql="select * from cart where cartid=?";
 		
 		try
 		{
@@ -143,12 +143,12 @@ public class CartDaoImpl implements CartDao
 			while(rs.next())
 			{
 				Cart ca =new Cart();
-				ca.setCartid(rs.getInt("cartId"));
-				ca.setcEmail(rs.getString("emailId"));
-				ca.setFname(rs.getString("foodName"));
-				ca.setFoodid(rs.getInt("foodId"));
-				ca.setFprice(rs.getDouble("foodPrice"));
-				ca.setFquantity(rs.getInt("foodQuantity"));
+				ca.setCartid(rs.getInt("cartid"));
+				ca.setcEmail(rs.getString("cEmail"));
+				ca.setFname(rs.getString("fname"));
+				ca.setFoodid(rs.getInt("foodid"));
+				ca.setFprice(rs.getDouble("fprice"));
+				ca.setFquantity(rs.getInt("fquantity"));
 				ca.setTotalPrice(rs.getDouble("totalPrice"));
 				
 				return ca;
@@ -166,7 +166,7 @@ public class CartDaoImpl implements CartDao
 	public boolean deleteCartById(int cartid) 
 	{
 		con=DButility.getConnect();
-		sql="delete from cart where cartId=?";
+		sql="delete from cart where cartid=?";
 		
 		try
 		{
@@ -188,7 +188,7 @@ public class CartDaoImpl implements CartDao
 	public boolean deleteCartByEmail(String email) 
 	{
 		con=DButility.getConnect();
-		sql="delete from cart where emailId=?";
+		sql="delete from cart where cEmail=?";
 		
 		try
 		{
@@ -211,7 +211,7 @@ public class CartDaoImpl implements CartDao
 	public boolean updateCart(int cartid, int fquantity) 
 	{
 		con=DButility.getConnect();
-		sql="update cart set foodQuantity=? where cartId=?";
+		sql="update cart set fquantity=? where cartid=?";
 		
 		try
 		{
@@ -226,7 +226,7 @@ public class CartDaoImpl implements CartDao
 				
 				double totalPrice=c.getFprice()*c.getFquantity();
 				
-				sql="update cart set totalPrice=? where cartId=?";
+				sql="update cart set totalPrice=? where cartid=?";
 				try {
 					pst=con.prepareStatement(sql);
 					pst.setDouble(1, totalPrice);

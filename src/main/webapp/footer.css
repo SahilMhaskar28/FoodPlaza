@@ -1,0 +1,20 @@
+.footer-custom {
+    background-color: #1e3d59; /* match header color */
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #ffc107; /* highlight on hover */
+}
+
+.footer-links {
+    padding: 0;
+}

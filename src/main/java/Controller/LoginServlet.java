@@ -35,8 +35,15 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		session=request.getSession();
+		
+		session.invalidate();
+		
+		request.setAttribute("errmsg","Logged Out Successfully !!");
+		rd=request.getRequestDispatcher("MyIndex.jsp");
+		rd.forward(request, response);
+				
 	}
 
 	/**
@@ -52,6 +59,7 @@ public class LoginServlet extends HttpServlet {
 		if(flag) {
 			login="customer";
 			session.setAttribute("login",login);
+			session.setAttribute("userName",userName );
 			msg="Login sucessfully by Customer";
 			request.setAttribute("msg",msg);
 			rd=request.getRequestDispatcher("MyIndex.jsp");
@@ -62,6 +70,7 @@ public class LoginServlet extends HttpServlet {
 			if(flag) {
 				login="admin";
 				session.setAttribute("login",login);
+				session.setAttribute("userName",userName );
 				msg="Login sucessfully by Admin";
 				request.setAttribute("msg",msg);
 				rd=request.getRequestDispatcher("MyIndex.jsp");
@@ -71,7 +80,7 @@ public class LoginServlet extends HttpServlet {
 			else {
 				login=null;
 				errmsg="Invlid username or password";
-				request.setAttribute("msg",msg);
+				request.setAttribute("errmsg",errmsg);
 				rd=request.getRequestDispatcher("Login.jsp");
 				rd.forward(request, response);
 			}

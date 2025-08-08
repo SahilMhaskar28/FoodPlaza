@@ -24,6 +24,8 @@ public class FoodServlet extends HttpServlet {
 	boolean flag;
 	String msg,errmsg;
 	HttpSession session;
+	Food f;
+	RequestDispatcher rd;
     
     public FoodServlet() {
         super();
@@ -38,9 +40,29 @@ public class FoodServlet extends HttpServlet {
 			flist=fdimpl.getAllFood();
 			session.setAttribute("flistObj", flist);
 			response.sendRedirect("FoodList.jsp");
-		}
-		else {
 			
+		}
+		else if(process!=null && process.equals("updateFood")){
+			int foodId = Integer.parseInt(request.getParameter("foodId"));
+			f=fdimpl.searchFood(foodId);
+			session.setAttribute("fObj",f);
+			response.sendRedirect("UpdateFood.jsp");
+		}
+		else if(process!=null && process.equals("deleteFood")) {
+			int foodId = Integer.parseInt(request.getParameter("foodId"));
+			flag=fdimpl.deleteFood(foodId);
+			if(flag) {
+				msg="Sucessfully Deleted";
+				request.setAttribute("msg",msg);
+				RequestDispatcher rd = request.getRequestDispatcher("FoodList.jsp");
+				rd.forward(request, response);
+			}
+			else {
+				errmsg="Not deleted";
+				request.setAttribute("errmsg",errmsg);
+				RequestDispatcher rd = request.getRequestDispatcher("FoodList.jsp");
+				rd.forward(request, response);
+			}
 		}
 		
 	}
@@ -49,7 +71,7 @@ public class FoodServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		doGet(request, response);
-//		PrintWriter out=response.getWriter(); 
+		PrintWriter out=response.getWriter(); 
 		String Process=request.getParameter("process");
 		HttpSession session = request.getSession();
 		
@@ -76,6 +98,33 @@ public class FoodServlet extends HttpServlet {
 				errmsg="Not inserted";
 				request.setAttribute("errmsg",errmsg);
 				RequestDispatcher rd = request.getRequestDispatcher("AddFood.jsp");
+				rd.forward(request, response);
+			}
+			
+		}
+	
+		else if(Process!=null && Process.equals("editFood")) {
+			int foodId = Integer.parseInt(request.getParameter("foodId"));
+			String foodName = request.getParameter("foodName");
+			String foodType = request.getParameter("foodType");
+			String foodCategory = request.getParameter("foodCategory");
+			String foodDescription = request.getParameter("foodDescription");
+			double foodPrice =Double.parseDouble(request.getParameter("foodPrice"));
+			String foodImage = request.getParameter("foodImage");
+			
+			f= new Food(foodId,foodName,foodType,foodCategory,foodDescription,foodPrice,foodImage);
+			flag=fdimpl.updateFood(f);
+			
+			if(flag) {
+				msg="Successfully Updated";
+				request.setAttribute("msg",msg);
+				RequestDispatcher rd = request.getRequestDispatcher("FoodList.jsp");
+				rd.forward(request, response);
+			}
+			else {
+				errmsg="Not Updated";
+				request.setAttribute("errmsg",errmsg);
+				RequestDispatcher rd = request.getRequestDispatcher("FoodList.jsp");
 				rd.forward(request, response);
 			}
 			

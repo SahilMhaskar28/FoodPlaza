@@ -21,8 +21,7 @@ if(msg!= null){ %>
 
 <%} else if(errmsg!=null) {%>
 <h5 class="alert alert-danger" role="alert"><%= errmsg %></h5>
-<%}
-%>
+<%}%>
 
 </body>
 </html>

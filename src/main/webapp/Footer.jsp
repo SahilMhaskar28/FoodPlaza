@@ -1,17 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-<div id="templatemo_footer">
-    
-    	<a href="#">Home</a> | <a href="#">Tea</a> | <a href="#">Top Dishes</a> | <a href="#">Company</a> | <a href="#">FAQs</a> | <a href="#">Contact Us</a><br />
-        Copyright © 2024 <a href="#"><strong>Your Company Name</strong></a> 
-        <!-- Credit: www.templatemo.com --></div> <!-- end of footer -->
-</body>
-</html>
+<link rel="stylesheet" href="footer.css">
+
+<footer class="footer-custom mt-5 py-4">
+    <div class="container text-center">
+        <ul class="footer-links list-inline mb-3">
+            <li class="list-inline-item"><a href="MyIndex.jsp">Home</a></li>
+            <li class="list-inline-item"><a href="#">Tea</a></li>
+            <li class="list-inline-item"><a href="#">Top Dishes</a></li>
+            <li class="list-inline-item"><a href="#">Company</a></li>
+            <li class="list-inline-item"><a href="#">FAQs</a></li>
+            <li class="list-inline-item"><a href="#">Contact Us</a></li>
+        </ul>
+        <p class="mb-0 text-white-50">
+            &copy; 2024 <strong>FlavorTown</strong>. All rights reserved.
+        </p>
+    </div>
+</footer>

@@ -39,7 +39,7 @@ public class OrderDaoImpl implements OrderDao {
 		totalBill=calculateBill(o.getEmailId());
 		
 		con=DButility.getConnect();
-		sql="insert into order_ctol18(orderDate, totalBill, emailId, orderStatus) values (?, ?, ?, ?)";
+		sql="insert into foodorder(orderDate, totalBill, emailId, orderStatus) values (?, ?, ?, ?)";
 		
 		try {
 			ps=con.prepareStatement(sql);
@@ -69,7 +69,7 @@ public class OrderDaoImpl implements OrderDao {
 	@Override
 	public OrderFood showOrderById(int orderId) {
 		con=DButility.getConnect();
-		sql="select * from order where orderId=?";
+		sql="select * from foodorder where orderId=?";
 		
 		try {
 			ps=con.prepareStatement(sql);
@@ -99,7 +99,7 @@ public class OrderDaoImpl implements OrderDao {
 	@Override
 	public List<OrderFood> showAllOrder() {
 		con=DButility.getConnect();
-		sql="select * from order";
+		sql="select * from foodorder";
 		
 		try {
 			ps=con.prepareStatement(sql);
@@ -131,7 +131,7 @@ public class OrderDaoImpl implements OrderDao {
 	@Override
 	public boolean changeOrderStatus(String orderStatus, int orderId) {
 		con=DButility.getConnect();
-		sql="update order set orderStatus=? where orderId=?";
+		sql="update foodorder set orderStatus=? where orderId=?";
 		
 		try {
 			ps=con.prepareStatement(sql);
@@ -154,7 +154,7 @@ public class OrderDaoImpl implements OrderDao {
 	@Override
 	public List<OrderFood> showMyOrderHistory(String emailId) {
 		con=DButility.getConnect();
-		sql="select * from order where emailId=?";
+		sql="select * from foodorder where emailId=?";
 		
 		try {
 			ps=con.prepareStatement(sql);
@@ -188,7 +188,7 @@ public class OrderDaoImpl implements OrderDao {
 	
 	public double calculateBill(String emailId) {
 		con=DButility.getConnect();
-		sql="select totalPrice from cart where emailId=?";
+		sql="select totalPrice from cart where cEmail=?";
 		
 		try {
 			ps=con.prepareStatement(sql);
